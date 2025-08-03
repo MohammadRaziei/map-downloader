@@ -1,0 +1,103 @@
+version: '3.8'
+
+services:
+  # MinIO Object Storage
+  minio:
+    image: minio/minio:latest
+    container_name: minio
+    hostname: minio
+    ports:
+      - "9000:9000"  # API port
+      - "9001:9001"  # Console port
+    volumes:
+      - minio_data:/data
+    environment:
+      - MINIO_ROOT_USER=${MINIO_ROOT_USER:-minioadmin}
+      - MINIO_ROOT_PASSWORD=${MINIO_ROOT_PASSWORD:-minioadmin}
+      - MINIO_DEFAULT_BUCKETS=${MINIO_DEFAULT_BUCKETS:-map-tiles}
+    command: server /data --console-address ":9001"
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:9000/minio/health/live"]
+      interval: 30s
+      timeout: 20s
+      retries: 3
+    restart: unless-stopped
+    networks:
+      - tile-network
+
+  # Create MinIO buckets on startup
+  createbuckets:
+    image: minio/mc
+    depends_on:
+      minio:
+        condition: service_healthy
+    environment:
+      - MINIO_ROOT_USER=${MINIO_ROOT_USER:-minioadmin}
+      - MINIO_ROOT_PASSWORD=${MINIO_ROOT_PASSWORD:-minioadmin}
+      - MINIO_DEFAULT_BUCKETS=${MINIO_DEFAULT_BUCKETS:-map-tiles}
+    entrypoint: >
+      /bin/sh -c '
+      echo "⏳ Waiting for MinIO to be ready...";
+      until mc alias set myminio http://minio:9000 "$MINIO_ROOT_USER" "$MINIO_ROOT_PASSWORD"; do
+        echo "❌ MinIO not ready, retrying in 2s...";
+        sleep 2;
+      done;
+
+      echo "✅ MinIO is up. Creating bucket...";
+      # mc mb myminio/$MINIO_DEFAULT_BUCKETS --ignore-existing;
+
+      # echo "🌍 Setting public read policy...";
+      # mc anonymous set download myminio/$MINIO_DEFAULT_BUCKETS;
+
+      # echo "🎉 Bucket created and configured successfully!";
+    
+      
+      echo "Configuring MinIO client...";
+      /usr/bin/mc alias set myminio \
+        http://minio:9000 \
+        "${MINIO_ROOT_USER:-minioadmin}" \
+        "${MINIO_ROOT_PASSWORD:-minioadmin}" \
+        --api s3v4 > /dev/null;
+      
+      echo "Creating bucket: ${MINIO_DEFAULT_BUCKETS:-map-tiles}";
+      /usr/bin/mc mb myminio/${MINIO_DEFAULT_BUCKETS:-map-tiles} --ignore-existing || true;
+      
+      echo "Setting bucket policy to public...";
+      /usr/bin/mc anonymous set download myminio/${MINIO_DEFAULT_BUCKETS:-map-tiles} || true;      
+      echo "MinIO bucket created and configured.";
+      '
+    networks:
+      - tile-network
+
+  # Map Tile Downloader Application
+  # app:
+  #   build:
+  #     context: .
+  #     dockerfile: Dockerfile
+  #   container_name: map-tile-downloader
+  #   volumes:
+  #     - ./config:/app/config
+  #     - ./data:/app/data
+  #   environment:
+  #     - MINIO_ENDPOINT=minio:9000
+  #     - MINIO_ACCESS_KEY=${MINIO_ROOT_USER:-minioadmin}
+  #     - MINIO_SECRET_KEY=${MINIO_ROOT_PASSWORD:-minioadmin}
+  #     - MINIO_BUCKET=${MINIO_DEFAULT_BUCKETS:-map-tiles}
+  #     - TEMP_DOWNLOAD_DIR=${TEMP_DOWNLOAD_DIR:-/app/data/temp}
+  #     - LOG_LEVEL=${LOG_LEVEL:-INFO}
+  #   depends_on:
+  #     minio:
+  #       condition: service_healthy
+  #     createbuckets:
+  #       condition: service_completed_successfully
+  #   networks:
+  #     - tile-network
+  #   restart: unless-stopped
+
+networks:
+  tile-network:
+    driver: bridge
+
+volumes:
+  minio_data:
+    name: map-tile-downloader_minio_data

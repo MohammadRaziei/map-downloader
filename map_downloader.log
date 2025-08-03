@@ -1,0 +1,264 @@
+2025-08-03 13:45:06,922 - __main__ - ERROR - Error loading configuration: [Errno 2] No such file or directory: 'config/config.yaml'
+2025-08-03 13:45:06,922 - __main__ - CRITICAL - Fatal error: [Errno 2] No such file or directory: 'config/config.yaml'
+Traceback (most recent call last):
+  File "/home/mohammad/desk/map/map_downloader/__main__.py", line 234, in main
+    app = MapTileDownloader(args.config)
+  File "/home/mohammad/desk/map/map_downloader/__main__.py", line 42, in __init__
+    self.config = self._load_config()
+  File "/home/mohammad/desk/map/map_downloader/__main__.py", line 49, in _load_config
+    config = Config.from_yaml(self.config_path)
+  File "/home/mohammad/desk/map/map_downloader/config.py", line 83, in from_yaml
+    with open(config_path, 'r') as f:
+FileNotFoundError: [Errno 2] No such file or directory: 'config/config.yaml'
+2025-08-03 13:46:11,202 - __main__ - ERROR - Error loading configuration: [Errno 2] No such file or directory: '/home/mohammad/desk/map/config/config.yaml'
+2025-08-03 13:46:11,202 - __main__ - CRITICAL - Fatal error: [Errno 2] No such file or directory: '/home/mohammad/desk/map/config/config.yaml'
+Traceback (most recent call last):
+  File "/home/mohammad/desk/map/map_downloader/__main__.py", line 234, in main
+    app = MapTileDownloader(args.config)
+  File "/home/mohammad/desk/map/map_downloader/__main__.py", line 42, in __init__
+    self.config = self._load_config()
+  File "/home/mohammad/desk/map/map_downloader/__main__.py", line 49, in _load_config
+    config = Config.from_yaml(self.config_path)
+  File "/home/mohammad/desk/map/map_downloader/config.py", line 83, in from_yaml
+    with open(config_path, 'r') as f:
+FileNotFoundError: [Errno 2] No such file or directory: '/home/mohammad/desk/map/config/config.yaml'
+2025-08-03 13:46:28,938 - __main__ - INFO - Loaded configuration from /home/mohammad/desk/map/config/config.yaml
+2025-08-03 13:46:28,938 - map_downloader.storage - INFO - Initialized local storage at /home/mohammad/desk/map/output/maps
+2025-08-03 13:46:28,938 - __main__ - INFO - Initialized local storage backend
+2025-08-03 13:46:29,717 - map_downloader.storage - ERROR - Error ensuring bucket exists: S3 operation failed; code: InvalidAccessKeyId, message: The Access Key Id you provided does not exist in our records., resource: /map-tiles, request_id: 18583A4ECCC1EB0E, host_id: 3e996b2f640d7e065d3a5c4e39a5538cefb82e3e77771990265e4698d8681eac, bucket_name: map-tiles
+2025-08-03 13:46:29,717 - __main__ - ERROR - Failed to initialize minio storage backend: S3 operation failed; code: InvalidAccessKeyId, message: The Access Key Id you provided does not exist in our records., resource: /map-tiles, request_id: 18583A4ECCC1EB0E, host_id: 3e996b2f640d7e065d3a5c4e39a5538cefb82e3e77771990265e4698d8681eac, bucket_name: map-tiles
+2025-08-03 13:46:29,717 - __main__ - CRITICAL - Fatal error: S3 operation failed; code: InvalidAccessKeyId, message: The Access Key Id you provided does not exist in our records., resource: /map-tiles, request_id: 18583A4ECCC1EB0E, host_id: 3e996b2f640d7e065d3a5c4e39a5538cefb82e3e77771990265e4698d8681eac, bucket_name: map-tiles
+Traceback (most recent call last):
+  File "/home/mohammad/desk/map/map_downloader/__main__.py", line 234, in main
+    app = MapTileDownloader(args.config)
+  File "/home/mohammad/desk/map/map_downloader/__main__.py", line 43, in __init__
+    self.storage_backends = self._initialize_storage_backends()
+  File "/home/mohammad/desk/map/map_downloader/__main__.py", line 61, in _initialize_storage_backends
+    backend = create_storage({
+  File "/home/mohammad/desk/map/map_downloader/storage.py", line 213, in create_storage
+    return MinIOStorage(
+  File "/home/mohammad/desk/map/map_downloader/storage.py", line 133, in __init__
+    self.ensure_bucket_exists()
+  File "/home/mohammad/desk/map/map_downloader/storage.py", line 139, in ensure_bucket_exists
+    if not self.client.bucket_exists(self.bucket_name):
+  File "/home/mohammad/desk/map/venv/lib/python3.10/site-packages/minio/api.py", line 699, in bucket_exists
+    self._execute("HEAD", bucket_name)
+  File "/home/mohammad/desk/map/venv/lib/python3.10/site-packages/minio/api.py", line 440, in _execute
+    region = self._get_region(bucket_name)
+  File "/home/mohammad/desk/map/venv/lib/python3.10/site-packages/minio/api.py", line 497, in _get_region
+    response = self._url_open(
+  File "/home/mohammad/desk/map/venv/lib/python3.10/site-packages/minio/api.py", line 426, in _url_open
+    raise response_error
+minio.error.S3Error: S3 operation failed; code: InvalidAccessKeyId, message: The Access Key Id you provided does not exist in our records., resource: /map-tiles, request_id: 18583A4ECCC1EB0E, host_id: 3e996b2f640d7e065d3a5c4e39a5538cefb82e3e77771990265e4698d8681eac, bucket_name: map-tiles
+2025-08-03 13:46:31,622 - __main__ - INFO - Loaded configuration from /home/mohammad/desk/map/config/config.yaml
+2025-08-03 13:46:31,622 - map_downloader.storage - INFO - Initialized local storage at /home/mohammad/desk/map/output/maps
+2025-08-03 13:46:31,622 - __main__ - INFO - Initialized local storage backend
+2025-08-03 13:46:32,261 - map_downloader.storage - ERROR - Error ensuring bucket exists: S3 operation failed; code: InvalidAccessKeyId, message: The Access Key Id you provided does not exist in our records., resource: /map-tiles, request_id: 18583A4F64C19047, host_id: 3e996b2f640d7e065d3a5c4e39a5538cefb82e3e77771990265e4698d8681eac, bucket_name: map-tiles
+2025-08-03 13:46:32,261 - __main__ - ERROR - Failed to initialize minio storage backend: S3 operation failed; code: InvalidAccessKeyId, message: The Access Key Id you provided does not exist in our records., resource: /map-tiles, request_id: 18583A4F64C19047, host_id: 3e996b2f640d7e065d3a5c4e39a5538cefb82e3e77771990265e4698d8681eac, bucket_name: map-tiles
+2025-08-03 13:46:32,261 - __main__ - CRITICAL - Fatal error: S3 operation failed; code: InvalidAccessKeyId, message: The Access Key Id you provided does not exist in our records., resource: /map-tiles, request_id: 18583A4F64C19047, host_id: 3e996b2f640d7e065d3a5c4e39a5538cefb82e3e77771990265e4698d8681eac, bucket_name: map-tiles
+Traceback (most recent call last):
+  File "/home/mohammad/desk/map/map_downloader/__main__.py", line 234, in main
+    app = MapTileDownloader(args.config)
+  File "/home/mohammad/desk/map/map_downloader/__main__.py", line 43, in __init__
+    self.storage_backends = self._initialize_storage_backends()
+  File "/home/mohammad/desk/map/map_downloader/__main__.py", line 61, in _initialize_storage_backends
+    backend = create_storage({
+  File "/home/mohammad/desk/map/map_downloader/storage.py", line 213, in create_storage
+    return MinIOStorage(
+  File "/home/mohammad/desk/map/map_downloader/storage.py", line 133, in __init__
+    self.ensure_bucket_exists()
+  File "/home/mohammad/desk/map/map_downloader/storage.py", line 139, in ensure_bucket_exists
+    if not self.client.bucket_exists(self.bucket_name):
+  File "/home/mohammad/desk/map/venv/lib/python3.10/site-packages/minio/api.py", line 699, in bucket_exists
+    self._execute("HEAD", bucket_name)
+  File "/home/mohammad/desk/map/venv/lib/python3.10/site-packages/minio/api.py", line 440, in _execute
+    region = self._get_region(bucket_name)
+  File "/home/mohammad/desk/map/venv/lib/python3.10/site-packages/minio/api.py", line 497, in _get_region
+    response = self._url_open(
+  File "/home/mohammad/desk/map/venv/lib/python3.10/site-packages/minio/api.py", line 426, in _url_open
+    raise response_error
+minio.error.S3Error: S3 operation failed; code: InvalidAccessKeyId, message: The Access Key Id you provided does not exist in our records., resource: /map-tiles, request_id: 18583A4F64C19047, host_id: 3e996b2f640d7e065d3a5c4e39a5538cefb82e3e77771990265e4698d8681eac, bucket_name: map-tiles
+2025-08-03 14:50:44,653 - __main__ - INFO - Loaded configuration from /home/mohammad/desk/map/config/config.yaml
+2025-08-03 14:50:44,654 - map_downloader.storage - INFO - Initialized local storage at /home/mohammad/desk/map/output/maps
+2025-08-03 14:50:44,654 - __main__ - INFO - Initialized local storage backend
+2025-08-03 14:50:45,349 - map_downloader.storage - ERROR - Error ensuring bucket exists: S3 operation failed; code: InvalidAccessKeyId, message: The Access Key Id you provided does not exist in our records., resource: /map-tiles, request_id: 18583DD07F9FD424, host_id: 3e996b2f640d7e065d3a5c4e39a5538cefb82e3e77771990265e4698d8681eac, bucket_name: map-tiles
+2025-08-03 14:50:45,349 - __main__ - ERROR - Failed to initialize minio storage backend: S3 operation failed; code: InvalidAccessKeyId, message: The Access Key Id you provided does not exist in our records., resource: /map-tiles, request_id: 18583DD07F9FD424, host_id: 3e996b2f640d7e065d3a5c4e39a5538cefb82e3e77771990265e4698d8681eac, bucket_name: map-tiles
+2025-08-03 14:50:45,350 - __main__ - CRITICAL - Fatal error: S3 operation failed; code: InvalidAccessKeyId, message: The Access Key Id you provided does not exist in our records., resource: /map-tiles, request_id: 18583DD07F9FD424, host_id: 3e996b2f640d7e065d3a5c4e39a5538cefb82e3e77771990265e4698d8681eac, bucket_name: map-tiles
+Traceback (most recent call last):
+  File "/home/mohammad/desk/map/map_downloader/__main__.py", line 234, in main
+    app = MapTileDownloader(args.config)
+  File "/home/mohammad/desk/map/map_downloader/__main__.py", line 43, in __init__
+    self.storage_backends = self._initialize_storage_backends()
+  File "/home/mohammad/desk/map/map_downloader/__main__.py", line 61, in _initialize_storage_backends
+    backend = create_storage({
+  File "/home/mohammad/desk/map/map_downloader/storage.py", line 213, in create_storage
+    return MinIOStorage(
+  File "/home/mohammad/desk/map/map_downloader/storage.py", line 133, in __init__
+    self.ensure_bucket_exists()
+  File "/home/mohammad/desk/map/map_downloader/storage.py", line 139, in ensure_bucket_exists
+    if not self.client.bucket_exists(self.bucket_name):
+  File "/home/mohammad/desk/map/venv/lib/python3.10/site-packages/minio/api.py", line 699, in bucket_exists
+    self._execute("HEAD", bucket_name)
+  File "/home/mohammad/desk/map/venv/lib/python3.10/site-packages/minio/api.py", line 440, in _execute
+    region = self._get_region(bucket_name)
+  File "/home/mohammad/desk/map/venv/lib/python3.10/site-packages/minio/api.py", line 497, in _get_region
+    response = self._url_open(
+  File "/home/mohammad/desk/map/venv/lib/python3.10/site-packages/minio/api.py", line 426, in _url_open
+    raise response_error
+minio.error.S3Error: S3 operation failed; code: InvalidAccessKeyId, message: The Access Key Id you provided does not exist in our records., resource: /map-tiles, request_id: 18583DD07F9FD424, host_id: 3e996b2f640d7e065d3a5c4e39a5538cefb82e3e77771990265e4698d8681eac, bucket_name: map-tiles
+2025-08-03 14:51:40,110 - __main__ - INFO - Loaded configuration from /home/mohammad/desk/map/config/config.yaml
+2025-08-03 14:51:40,110 - map_downloader.storage - INFO - Initialized local storage at /home/mohammad/desk/map/output/maps
+2025-08-03 14:51:40,110 - __main__ - INFO - Initialized local storage backend
+2025-08-03 14:51:40,111 - urllib3.connectionpool - WARNING - Retrying (Retry(total=4, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NameResolutionError("<urllib3.connection.HTTPConnection object at 0x7ee7ba9eccd0>: Failed to resolve 'minio' ([Errno -3] Temporary failure in name resolution)")': /map-tiles?location=
+2025-08-03 14:51:40,511 - urllib3.connectionpool - WARNING - Retrying (Retry(total=3, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NameResolutionError("<urllib3.connection.HTTPConnection object at 0x7ee7ba9ecdf0>: Failed to resolve 'minio' ([Errno -3] Temporary failure in name resolution)")': /map-tiles?location=
+2025-08-03 14:51:41,313 - urllib3.connectionpool - WARNING - Retrying (Retry(total=2, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NameResolutionError("<urllib3.connection.HTTPConnection object at 0x7ee7ba9ed0f0>: Failed to resolve 'minio' ([Errno -3] Temporary failure in name resolution)")': /map-tiles?location=
+2025-08-03 14:51:42,916 - urllib3.connectionpool - WARNING - Retrying (Retry(total=1, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NameResolutionError("<urllib3.connection.HTTPConnection object at 0x7ee7ba9ecd00>: Failed to resolve 'minio' ([Errno -3] Temporary failure in name resolution)")': /map-tiles?location=
+2025-08-03 14:52:02,440 - __main__ - INFO - Loaded configuration from /home/mohammad/desk/map/config/config.yaml
+2025-08-03 14:52:02,440 - map_downloader.storage - INFO - Initialized local storage at /home/mohammad/desk/map/output/maps
+2025-08-03 14:52:02,441 - __main__ - INFO - Initialized local storage backend
+2025-08-03 14:54:05,463 - __main__ - INFO - Loaded configuration from /home/mohammad/desk/map/config/config.yaml
+2025-08-03 14:54:05,463 - map_downloader.storage - INFO - Initialized local storage at /home/mohammad/desk/map/output/maps
+2025-08-03 14:54:05,463 - __main__ - INFO - Initialized local storage backend
+2025-08-03 14:54:28,476 - __main__ - INFO - Loaded configuration from /home/mohammad/desk/map/config/config.yaml
+2025-08-03 14:54:28,476 - map_downloader.storage - INFO - Initialized local storage at /home/mohammad/desk/map/output/maps
+2025-08-03 14:54:28,476 - __main__ - INFO - Initialized local storage backend
+2025-08-03 14:56:41,932 - urllib3.connectionpool - WARNING - Retrying (Retry(total=4, connect=None, read=None, redirect=None, status=None)) after connection broken by 'ConnectTimeoutError(<urllib3.connection.HTTPConnection object at 0x777eebd38cd0>, 'Connection to 172.18.0.142 timed out. (connect timeout=300)')': /map-tiles?location=
+2025-08-03 14:58:57,500 - urllib3.connectionpool - WARNING - Retrying (Retry(total=3, connect=None, read=None, redirect=None, status=None)) after connection broken by 'ConnectTimeoutError(<urllib3.connection.HTTPConnection object at 0x777eebd38df0>, 'Connection to 172.18.0.142 timed out. (connect timeout=300)')': /map-tiles?location=
+2025-08-03 15:01:13,068 - urllib3.connectionpool - WARNING - Retrying (Retry(total=2, connect=None, read=None, redirect=None, status=None)) after connection broken by 'ConnectTimeoutError(<urllib3.connection.HTTPConnection object at 0x777eebd390c0>, 'Connection to 172.18.0.142 timed out. (connect timeout=300)')': /map-tiles?location=
+2025-08-03 15:03:29,036 - urllib3.connectionpool - WARNING - Retrying (Retry(total=1, connect=None, read=None, redirect=None, status=None)) after connection broken by 'ConnectTimeoutError(<urllib3.connection.HTTPConnection object at 0x777eebd39210>, 'Connection to 172.18.0.142 timed out. (connect timeout=300)')': /map-tiles?location=
+2025-08-03 15:05:45,807 - urllib3.connectionpool - WARNING - Retrying (Retry(total=0, connect=None, read=None, redirect=None, status=None)) after connection broken by 'ConnectTimeoutError(<urllib3.connection.HTTPConnection object at 0x777eebd39390>, 'Connection to 172.18.0.142 timed out. (connect timeout=300)')': /map-tiles?location=
+2025-08-03 15:08:01,868 - __main__ - ERROR - Failed to initialize minio storage backend: HTTPConnectionPool(host='172.18.0.142', port=9000): Max retries exceeded with url: /map-tiles?location= (Caused by ConnectTimeoutError(<urllib3.connection.HTTPConnection object at 0x777eebd39570>, 'Connection to 172.18.0.142 timed out. (connect timeout=300)'))
+2025-08-03 15:08:01,868 - __main__ - CRITICAL - Fatal error: HTTPConnectionPool(host='172.18.0.142', port=9000): Max retries exceeded with url: /map-tiles?location= (Caused by ConnectTimeoutError(<urllib3.connection.HTTPConnection object at 0x777eebd39570>, 'Connection to 172.18.0.142 timed out. (connect timeout=300)'))
+Traceback (most recent call last):
+  File "/home/mohammad/desk/map/venv/lib/python3.10/site-packages/urllib3/connection.py", line 198, in _new_conn
+    sock = connection.create_connection(
+  File "/home/mohammad/desk/map/venv/lib/python3.10/site-packages/urllib3/util/connection.py", line 85, in create_connection
+    raise err
+  File "/home/mohammad/desk/map/venv/lib/python3.10/site-packages/urllib3/util/connection.py", line 73, in create_connection
+    sock.connect(sa)
+TimeoutError: [Errno 110] Connection timed out
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/mohammad/desk/map/venv/lib/python3.10/site-packages/urllib3/connectionpool.py", line 787, in urlopen
+    response = self._make_request(
+  File "/home/mohammad/desk/map/venv/lib/python3.10/site-packages/urllib3/connectionpool.py", line 493, in _make_request
+    conn.request(
+  File "/home/mohammad/desk/map/venv/lib/python3.10/site-packages/urllib3/connection.py", line 494, in request
+    self.endheaders()
+  File "/usr/lib/python3.10/http/client.py", line 1278, in endheaders
+    self._send_output(message_body, encode_chunked=encode_chunked)
+  File "/usr/lib/python3.10/http/client.py", line 1038, in _send_output
+    self.send(msg)
+  File "/usr/lib/python3.10/http/client.py", line 976, in send
+    self.connect()
+  File "/home/mohammad/desk/map/venv/lib/python3.10/site-packages/urllib3/connection.py", line 325, in connect
+    self.sock = self._new_conn()
+  File "/home/mohammad/desk/map/venv/lib/python3.10/site-packages/urllib3/connection.py", line 207, in _new_conn
+    raise ConnectTimeoutError(
+urllib3.exceptions.ConnectTimeoutError: (<urllib3.connection.HTTPConnection object at 0x777eebd39570>, 'Connection to 172.18.0.142 timed out. (connect timeout=300)')
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/mohammad/desk/map/map_downloader/__main__.py", line 234, in main
+    app = MapTileDownloader(args.config)
+  File "/home/mohammad/desk/map/map_downloader/__main__.py", line 43, in __init__
+    self.storage_backends = self._initialize_storage_backends()
+  File "/home/mohammad/desk/map/map_downloader/__main__.py", line 61, in _initialize_storage_backends
+    backend = create_storage({
+  File "/home/mohammad/desk/map/map_downloader/storage.py", line 213, in create_storage
+    return MinIOStorage(
+  File "/home/mohammad/desk/map/map_downloader/storage.py", line 133, in __init__
+    self.ensure_bucket_exists()
+  File "/home/mohammad/desk/map/map_downloader/storage.py", line 139, in ensure_bucket_exists
+    if not self.client.bucket_exists(self.bucket_name):
+  File "/home/mohammad/desk/map/venv/lib/python3.10/site-packages/minio/api.py", line 699, in bucket_exists
+    self._execute("HEAD", bucket_name)
+  File "/home/mohammad/desk/map/venv/lib/python3.10/site-packages/minio/api.py", line 440, in _execute
+    region = self._get_region(bucket_name)
+  File "/home/mohammad/desk/map/venv/lib/python3.10/site-packages/minio/api.py", line 497, in _get_region
+    response = self._url_open(
+  File "/home/mohammad/desk/map/venv/lib/python3.10/site-packages/minio/api.py", line 305, in _url_open
+    response = self._http.urlopen(
+  File "/home/mohammad/desk/map/venv/lib/python3.10/site-packages/urllib3/poolmanager.py", line 459, in urlopen
+    response = conn.urlopen(method, u.request_uri, **kw)
+  File "/home/mohammad/desk/map/venv/lib/python3.10/site-packages/urllib3/connectionpool.py", line 871, in urlopen
+    return self.urlopen(
+  File "/home/mohammad/desk/map/venv/lib/python3.10/site-packages/urllib3/connectionpool.py", line 871, in urlopen
+    return self.urlopen(
+  File "/home/mohammad/desk/map/venv/lib/python3.10/site-packages/urllib3/connectionpool.py", line 871, in urlopen
+    return self.urlopen(
+  [Previous line repeated 2 more times]
+  File "/home/mohammad/desk/map/venv/lib/python3.10/site-packages/urllib3/connectionpool.py", line 841, in urlopen
+    retries = retries.increment(
+  File "/home/mohammad/desk/map/venv/lib/python3.10/site-packages/urllib3/util/retry.py", line 519, in increment
+    raise MaxRetryError(_pool, url, reason) from reason  # type: ignore[arg-type]
+urllib3.exceptions.MaxRetryError: HTTPConnectionPool(host='172.18.0.142', port=9000): Max retries exceeded with url: /map-tiles?location= (Caused by ConnectTimeoutError(<urllib3.connection.HTTPConnection object at 0x777eebd39570>, 'Connection to 172.18.0.142 timed out. (connect timeout=300)'))
+2025-08-03 15:08:49,507 - __main__ - INFO - Loaded configuration from /home/mohammad/desk/map/config/config.yaml
+2025-08-03 15:08:49,507 - map_downloader.storage - INFO - Initialized local storage at /home/mohammad/desk/map/output/maps
+2025-08-03 15:08:49,507 - __main__ - INFO - Initialized local storage backend
+2025-08-03 15:08:49,507 - map_downloader.downloader.strategies - INFO - Initialized RateLimitStrategy with 5 requests per second
+2025-08-03 15:08:49,507 - map_downloader.downloader.strategies - INFO - Initialized TimeBasedStrategy: 5 min run, 1 min pause, batch size 100
+2025-08-03 15:08:49,507 - map_downloader.downloader.core - INFO - Initialized TileDownloader with 2 strategies
+2025-08-03 15:08:49,507 - __main__ - INFO - Starting map tile downloader
+2025-08-03 15:08:49,507 - __main__ - INFO - Processing source: google_maps
+2025-08-03 15:08:49,508 - map_downloader.downloader.core - INFO - Downloading zoom level 10: x=657-658, y=402-403
+2025-08-03 15:08:49,901 - map_downloader.downloader.core - ERROR - Error downloading tile z=10, x=657, y=402: RateLimitStrategy.after_download() got an unexpected keyword argument 'success'
+2025-08-03 15:08:50,042 - map_downloader.downloader.core - ERROR - Error downloading tile z=10, x=657, y=403: RateLimitStrategy.after_download() got an unexpected keyword argument 'success'
+2025-08-03 15:08:50,225 - map_downloader.downloader.core - ERROR - Error downloading tile z=10, x=658, y=402: RateLimitStrategy.after_download() got an unexpected keyword argument 'success'
+2025-08-03 15:08:50,417 - map_downloader.downloader.core - ERROR - Error downloading tile z=10, x=658, y=403: RateLimitStrategy.after_download() got an unexpected keyword argument 'success'
+2025-08-03 15:08:50,417 - map_downloader.downloader.core - INFO - Downloading zoom level 11: x=1315-1316, y=805-806
+2025-08-03 15:08:50,629 - map_downloader.downloader.core - ERROR - Error downloading tile z=11, x=1315, y=805: RateLimitStrategy.after_download() got an unexpected keyword argument 'success'
+2025-08-03 15:08:50,833 - map_downloader.downloader.core - ERROR - Error downloading tile z=11, x=1315, y=806: RateLimitStrategy.after_download() got an unexpected keyword argument 'success'
+2025-08-03 15:08:51,033 - map_downloader.downloader.core - ERROR - Error downloading tile z=11, x=1316, y=805: RateLimitStrategy.after_download() got an unexpected keyword argument 'success'
+2025-08-03 15:08:51,229 - map_downloader.downloader.core - ERROR - Error downloading tile z=11, x=1316, y=806: RateLimitStrategy.after_download() got an unexpected keyword argument 'success'
+2025-08-03 15:08:51,229 - map_downloader.downloader.core - INFO - Downloading zoom level 12: x=2631-2633, y=1611-1613
+2025-08-03 15:08:51,418 - map_downloader.downloader.core - ERROR - Error downloading tile z=12, x=2631, y=1611: RateLimitStrategy.after_download() got an unexpected keyword argument 'success'
+2025-08-03 15:08:51,617 - map_downloader.downloader.core - ERROR - Error downloading tile z=12, x=2631, y=1612: RateLimitStrategy.after_download() got an unexpected keyword argument 'success'
+2025-08-03 15:08:51,852 - map_downloader.downloader.core - ERROR - Error downloading tile z=12, x=2631, y=1613: RateLimitStrategy.after_download() got an unexpected keyword argument 'success'
+2025-08-03 15:08:52,039 - map_downloader.downloader.core - ERROR - Error downloading tile z=12, x=2632, y=1611: RateLimitStrategy.after_download() got an unexpected keyword argument 'success'
+2025-08-03 15:08:52,230 - map_downloader.downloader.core - ERROR - Error downloading tile z=12, x=2632, y=1612: RateLimitStrategy.after_download() got an unexpected keyword argument 'success'
+2025-08-03 15:08:52,422 - map_downloader.downloader.core - ERROR - Error downloading tile z=12, x=2632, y=1613: RateLimitStrategy.after_download() got an unexpected keyword argument 'success'
+2025-08-03 15:08:52,630 - map_downloader.downloader.core - ERROR - Error downloading tile z=12, x=2633, y=1611: RateLimitStrategy.after_download() got an unexpected keyword argument 'success'
+2025-08-03 15:08:52,822 - map_downloader.downloader.core - ERROR - Error downloading tile z=12, x=2633, y=1612: RateLimitStrategy.after_download() got an unexpected keyword argument 'success'
+2025-08-03 15:08:53,019 - map_downloader.downloader.core - ERROR - Error downloading tile z=12, x=2633, y=1613: RateLimitStrategy.after_download() got an unexpected keyword argument 'success'
+2025-08-03 15:08:53,020 - map_downloader.downloader.core - INFO - Downloading zoom level 13: x=5262-5267, y=3222-3226
+2025-08-03 15:19:33,400 - __main__ - INFO - Loaded configuration from /home/mohammad/desk/map/config/config.yaml
+2025-08-03 15:19:33,401 - map_downloader.storage - INFO - Initialized local storage at /home/mohammad/desk/map/output/maps
+2025-08-03 15:19:33,401 - __main__ - INFO - Initialized local storage backend
+2025-08-03 15:19:33,401 - map_downloader.downloader.strategies - INFO - Initialized RateLimitStrategy with 5 requests per second
+2025-08-03 15:19:33,401 - map_downloader.downloader.strategies - INFO - Initialized TimeBasedStrategy: 5 min run, 1 min pause, batch size 100
+2025-08-03 15:19:33,401 - map_downloader.downloader.core - INFO - Initialized TileDownloader with 2 strategies
+2025-08-03 15:19:33,401 - __main__ - INFO - Starting map tile downloader
+2025-08-03 15:19:33,401 - __main__ - INFO - Processing source: google_maps
+2025-08-03 15:19:33,401 - map_downloader.downloader.core - INFO - Downloading zoom level 10: x=657-658, y=402-403
+2025-08-03 15:19:34,166 - map_downloader.downloader.core - INFO - Downloading zoom level 11: x=1315-1316, y=805-806
+2025-08-03 15:19:34,966 - map_downloader.downloader.core - INFO - Downloading zoom level 12: x=2631-2633, y=1611-1613
+2025-08-03 15:19:36,924 - map_downloader.downloader.core - INFO - Downloading zoom level 13: x=5262-5267, y=3222-3226
+2025-08-03 16:08:35,438 - __main__ - INFO - Loaded configuration from /home/mohammad/desk/map/config/config.yaml
+2025-08-03 16:08:35,438 - map_downloader.storage - INFO - Initialized local storage at /home/mohammad/desk/map/output/maps
+2025-08-03 16:08:35,438 - __main__ - INFO - Initialized local storage backend
+2025-08-03 16:10:50,188 - urllib3.connectionpool - WARNING - Retrying (Retry(total=4, connect=None, read=None, redirect=None, status=None)) after connection broken by 'ConnectTimeoutError(<urllib3.connection.HTTPConnection object at 0x736659c10cd0>, 'Connection to 172.18.0.142 timed out. (connect timeout=300)')': /map-tiles?location=
+2025-08-03 16:13:05,756 - urllib3.connectionpool - WARNING - Retrying (Retry(total=3, connect=None, read=None, redirect=None, status=None)) after connection broken by 'ConnectTimeoutError(<urllib3.connection.HTTPConnection object at 0x736659c10df0>, 'Connection to 172.18.0.142 timed out. (connect timeout=300)')': /map-tiles?location=
+2025-08-03 16:13:43,237 - __main__ - INFO - Loaded configuration from /home/mohammad/desk/map/config/config.yaml
+2025-08-03 16:13:43,237 - map_downloader.storage - INFO - Initialized local storage at /home/mohammad/desk/map/output/maps
+2025-08-03 16:13:43,237 - __main__ - INFO - Initialized local storage backend
+2025-08-03 16:13:43,237 - map_downloader.downloader.strategies - INFO - Initialized RateLimitStrategy with 5 requests per second
+2025-08-03 16:13:43,237 - map_downloader.downloader.strategies - INFO - Initialized TimeBasedStrategy: 5 min run, 1 min pause, batch size 100
+2025-08-03 16:13:43,237 - map_downloader.downloader.core - INFO - Initialized TileDownloader with 2 strategies
+2025-08-03 16:13:43,237 - __main__ - INFO - Starting map tile downloader
+2025-08-03 16:13:43,237 - __main__ - INFO - Processing source: google_maps
+2025-08-03 16:13:43,237 - map_downloader.downloader.core - INFO - Downloading zoom level 10: x=657-658, y=402-403
+2025-08-03 16:13:44,094 - map_downloader.downloader.core - INFO - Downloading zoom level 11: x=1315-1316, y=805-806
+2025-08-03 16:13:44,893 - map_downloader.downloader.core - INFO - Downloading zoom level 12: x=2631-2633, y=1611-1613
+2025-08-03 16:13:46,682 - map_downloader.downloader.core - INFO - Downloading zoom level 13: x=5262-5267, y=3222-3226
+2025-08-03 16:13:52,767 - map_downloader.mbtiles - INFO - Created new MBTiles file: /tmp/map_downloader/google_maps.mbtiles
+2025-08-03 16:13:52,767 - map_downloader.mbtiles - INFO - Optimizing MBTiles file...
+2025-08-03 16:13:52,772 - map_downloader.mbtiles - INFO - Optimization complete
+2025-08-03 16:13:52,772 - map_downloader.mbtiles - INFO - Closed MBTiles file: /tmp/map_downloader/google_maps.mbtiles
+2025-08-03 16:13:52,772 - __main__ - INFO - Created MBTiles file: /tmp/map_downloader/google_maps.mbtiles
+2025-08-03 16:13:52,772 - __main__ - INFO - Saved to LocalStorage: google_maps.mbtiles
+2025-08-03 16:13:52,772 - __main__ - INFO - Completed processing source: google_maps
+2025-08-03 16:13:52,772 - __main__ - INFO - Map tile downloader finished

@@ -1,0 +1,7 @@
+pyyaml
+requests
+minio
+pymbtiles
+python-dotenv
+schedule
+python-slugify

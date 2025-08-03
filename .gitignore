@@ -1,0 +1,7 @@
+__pycache__
+__other__
+venv
+.env
+.log
+config/config.yaml
+output

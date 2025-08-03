@@ -1,0 +1,72 @@
+# Map Downloader Configuration
+
+# Global settings
+global:
+  log_level: INFO  # DEBUG, INFO, WARNING, ERROR, CRITICAL
+  temp_download_dir: "/tmp/map_downloader"
+  cleanup_temp_files: true
+  cleanup_after_days: 7
+  max_retries: 3
+  retry_delay: 5  # seconds
+
+# Download strategies
+download_strategies:
+  - name: "rate_limited"
+    type: "rate_limit"
+    requests_per_second: 5
+    
+  - name: "timed_batch"
+    type: "time_based"
+    run_minutes: 5
+    pause_minutes: 1
+    batch_size: 100
+
+# IP Pool configuration
+ip_pool:
+  enabled: true
+  provider: ""  # e.g., "luminati", "smartproxy", or custom
+  credentials:
+    username: ""
+    password: ""
+  rotation_interval: 60  # seconds
+  max_failures: 3  # rotate IP after this many failures
+
+# Source configuration
+sources:
+  - name: "google_maps"
+    type: "google_maps"
+    url_template: "https://mt1.google.com/vt/lyrs=m&x={x}&y={y}&z={z}"
+    headers:
+      User-Agent: "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
+    zoom_levels: [10, 11, 12, 13]
+    bounds:
+      min_lat: 35.642
+      min_lon: 51.277
+      max_lat: 35.800
+      max_lon: 51.500
+
+# Output configuration
+output:
+  format: "mbtiles"  # or "files"
+  compress: true
+  destinations:
+    - type: "local"
+      path: "./output/maps"
+    - type: "minio"
+      endpoint: "play.min.io"
+      access_key: "your-access-key"
+      secret_key: "your-secret-key"
+      bucket_name: "map-tiles"
+      secure: true
+
+# MBTiles specific settings
+mbtiles:
+  name: "map_tiles"
+  description: "Map tiles downloaded from various sources"
+  attribution: "© OpenStreetMap contributors"
+  version: "1.0"
+  format: "png"
+  min_zoom: 0
+  max_zoom: 22
+  bounds: "-180.0,-85.0511,180.0,85.0511"
+  type: "baselayer"
